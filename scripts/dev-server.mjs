@@ -88,6 +88,16 @@ function resolveFilePath(requestPath) {
     return path.join(srcRoot, 'index.html');
   }
 
+  const srcPath = path.join(srcRoot, requestPath);
+
+  if (existsSync(srcPath) && !srcPath.endsWith(path.sep)) {
+    return srcPath;
+  }
+
+  if (existsSync(`${srcPath}.html`)) {
+    return `${srcPath}.html`;
+  }
+
   const absolutePath = path.join(projectRoot, requestPath);
 
   if (existsSync(absolutePath) && !absolutePath.endsWith(path.sep)) {
