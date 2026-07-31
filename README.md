@@ -377,24 +377,11 @@ npm run build
 
 ---
 
-## ✅ Validación contra la rúbrica
-
-- Responsive mobile-first en 3 tamaños: cubierto por `src/styles.css` y las vistas del SPA.
-- SPA con History API: cubierto por `src/router.js` y `src/app.js`.
-- Async/await y Fetch API con manejo de errores: cubierto por `src/chat.js`, `src/services/` y `api/chat.js`.
-- Integración con Gemini y system prompt: cubierto por `api/chat.js`, `src/characters.js` y `src/utils.js`.
-- Seguridad con Vercel Functions y variables de entorno: cubierto por `api/chat.js` y `.env.example`.
-- Chat con historial, loading, error, timestamps, copy y limpieza: cubierto por `src/chat.js` y los componentes de `src/components/`.
-- Tests con Vitest: cubierto por `tests/`.
-- README con contexto, instalación, tests, deploy, capturas, link productivo y prompts: cubierto en este archivo.
-- URL pública de Vercel: publicada.
-- Capturas de pantalla del deploy: incluidas en la carpeta `img/`.
-
 ## ✅ Estado de entrega
 
-Con el código actual, el proyecto cumple con la consigna y con la rúbrica principal.
+El proyecto quedó preparado para su entrega con la documentación y los recursos necesarios para revisar el funcionamiento general.
 
-Lo que está completo:
+Incluye:
 
 - SPA con Home, Chat y About.
 - Gemini integrado mediante Vercel Function.
@@ -402,8 +389,12 @@ Lo que está completo:
 - Responsive mobile-first.
 - Historial de conversación en sesión y por personaje.
 - Múltiples personajes.
-- Al menos 4 tests con Vitest.
+- Tests con Vitest.
 - Deploy público funcional en Vercel.
 - README con uso, instalación, tests, deploy, capturas y uso de IA.
+- URL pública de Vercel.
+- Capturas de pantalla del deploy en la carpeta `img/`.
 
-No veo faltantes funcionales obligatorios para la entrega.
+## 📝 Cierre personal
+
+Este trabajo fue realizado por **Raul Alejandro Carmona Cuellar** como entrega del proyecto M3, con la IA utilizada únicamente como apoyo técnico y documental.
