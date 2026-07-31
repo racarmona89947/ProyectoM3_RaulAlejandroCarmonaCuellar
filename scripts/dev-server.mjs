@@ -9,6 +9,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const projectRoot = path.resolve(__dirname, '..');
 const srcRoot = path.join(projectRoot, 'src');
+const requestedPort = Number(process.env.PORT ?? 3000);
 
 function loadDotEnv(filePath) {
   if (!existsSync(filePath)) {
@@ -170,8 +171,28 @@ const server = http.createServer(async (request, response) => {
   }
 });
 
-const port = Number(process.env.PORT ?? 3000);
+function listenOnAvailablePort(port) {
+  return new Promise((resolve, reject) => {
+    const onError = (error) => {
+      server.off('error', onError);
 
-server.listen(port, () => {
-  console.log(`Simpsons Chat running at http://localhost:${port}`);
-});
+      if (error.code === 'EADDRINUSE') {
+        resolve(listenOnAvailablePort(port + 1));
+        return;
+      }
+
+      reject(error);
+    };
+
+    server.once('error', onError);
+
+    server.listen(port, () => {
+      server.off('error', onError);
+      resolve(port);
+    });
+  });
+}
+
+const port = await listenOnAvailablePort(requestedPort);
+
+console.log(`Simpsons Chat running at http://localhost:${port}`);
