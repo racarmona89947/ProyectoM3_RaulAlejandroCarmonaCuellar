@@ -5,6 +5,10 @@ Autor: **Raul Alejandro Carmona Cuellar**
 
 > SPA responsive en JavaScript vanilla para chatear con personajes de Los Simpson usando Gemini a través de una Vercel Function y el SDK de Google.
 
+**URL en producción:** [https://proyecto-m3-raul-alejandro-carmona-cuellar.vercel.app/](https://proyecto-m3-raul-alejandro-carmona-cuellar.vercel.app/)
+
+**Repositorio:** [https://github.com/racarmona89947/ProyectoM3_RaulAlejandroCarmonaCuellar](https://github.com/racarmona89947/ProyectoM3_RaulAlejandroCarmonaCuellar)
+
 ---
 
 ## ✨ ¿Qué hace?
@@ -35,6 +39,32 @@ La idea fue construir una solución que permitiera:
 - y desplegar el resultado final en Vercel.
 
 El trabajo fue realizado por **Raul Alejandro Carmona Cuellar**. La IA se usó como **apoyo técnico y documental**, no como autora del proyecto.
+
+## 🧩 Descripción del proyecto
+
+Simpsons Chat es una Single Page Application que permite conversar con varios personajes de Los Simpson mediante Gemini AI, usando una Vercel Function como proxy seguro.
+
+La aplicación incluye:
+
+- Home, Chat y About con navegación SPA.
+- Galería de personajes con prompts diferenciados por personaje.
+- Chat con mensajes diferenciados, timestamps, indicador de escritura, botón para copiar y limpieza de historial.
+- Persistencia de historial y personaje seleccionado en `localStorage`.
+- Modo claro/oscuro con toggle.
+- Diseño responsive mobile-first para móvil, tablet y desktop.
+
+## 🧩 Stack técnico
+
+- HTML5
+- CSS3
+- JavaScript vanilla
+- Fetch API
+- History API
+- LocalStorage
+- Vercel Serverless Functions
+- SDK de Google para Gemini (`@google/genai`)
+- Vitest
+- The Simpsons API para imágenes y metadatos de personajes
 
 ---
 
@@ -137,8 +167,6 @@ GEMINI_TEMPERATURE=0.4
 ```
 
 El archivo `.env.example` solo contiene los nombres de variables, sin valores reales.
-
----
 
 ## ▶️ Ejecución local
 
@@ -244,7 +272,10 @@ Las imágenes se muestran en el mismo orden en que fueron organizadas en la carp
 6. Probar la app en móvil, tablet y desktop.
 
 ### URL pública
-- **Pendiente de completar con la URL final de Vercel**
+- [https://proyecto-m3-raul-alejandro-carmona-cuellar.vercel.app/](https://proyecto-m3-raul-alejandro-carmona-cuellar.vercel.app/)
+
+### Repositorio
+- [https://github.com/racarmona89947/ProyectoM3_RaulAlejandroCarmonaCuellar](https://github.com/racarmona89947/ProyectoM3_RaulAlejandroCarmonaCuellar)
 
 ---
 
@@ -353,8 +384,26 @@ npm run build
 - Async/await y Fetch API con manejo de errores: cubierto por `src/chat.js`, `src/services/` y `api/chat.js`.
 - Integración con Gemini y system prompt: cubierto por `api/chat.js`, `src/characters.js` y `src/utils.js`.
 - Seguridad con Vercel Functions y variables de entorno: cubierto por `api/chat.js` y `.env.example`.
-- Chat con historial, loading, error y copy: cubierto por `src/chat.js` y los componentes de `src/components/`.
+- Chat con historial, loading, error, timestamps, copy y limpieza: cubierto por `src/chat.js` y los componentes de `src/components/`.
 - Tests con Vitest: cubierto por `tests/`.
-- README con contexto, instalación, tests, deploy y prompts: cubierto en este archivo.
-- URL pública de Vercel: pendiente de publicar.
-- Capturas de pantalla del deploy: pendientes de completar.
+- README con contexto, instalación, tests, deploy, capturas, link productivo y prompts: cubierto en este archivo.
+- URL pública de Vercel: publicada.
+- Capturas de pantalla del deploy: incluidas en la carpeta `img/`.
+
+## ✅ Estado de entrega
+
+Con el código actual, el proyecto cumple con la consigna y con la rúbrica principal.
+
+Lo que está completo:
+
+- SPA con Home, Chat y About.
+- Gemini integrado mediante Vercel Function.
+- API key fuera del frontend.
+- Responsive mobile-first.
+- Historial de conversación en sesión y por personaje.
+- Múltiples personajes.
+- Al menos 4 tests con Vitest.
+- Deploy público funcional en Vercel.
+- README con uso, instalación, tests, deploy, capturas y uso de IA.
+
+No veo faltantes funcionales obligatorios para la entrega.
