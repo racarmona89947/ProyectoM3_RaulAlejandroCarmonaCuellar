@@ -1,0 +1,21 @@
+{
+  "name": "proyectom3_ejemplo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "SPA responsive de Los Simpson con Gemini y Vercel Functions",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch scripts/dev-server.mjs",
+    "test": "vitest",
+    "test:watch": "vitest --watch",
+    "build": "vercel build"
+  },
+  "devDependencies": {
+    "jsdom": "^30.0.1",
+    "vercel": "^58.4.4",
+    "vitest": "^4.1.10"
+  },
+  "dependencies": {
+    "@google/genai": "^2.15.0"
+  }
+}
