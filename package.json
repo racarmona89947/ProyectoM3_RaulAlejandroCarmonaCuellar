@@ -8,11 +8,10 @@
     "dev": "node --watch scripts/dev-server.mjs",
     "test": "vitest",
     "test:watch": "vitest --watch",
-    "build": "vercel build"
+    "build": "echo \"No build step required\""
   },
   "devDependencies": {
     "jsdom": "^30.0.1",
-    "vercel": "^58.4.4",
     "vitest": "^4.1.10"
   },
   "dependencies": {
