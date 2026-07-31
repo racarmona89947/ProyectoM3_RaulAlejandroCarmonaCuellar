@@ -206,6 +206,33 @@ El archivo `.env.example` sí se mantiene en el repositorio porque documenta los
 
 ---
 
+## 📸 Capturas
+
+Las imágenes se muestran en el mismo orden en que fueron organizadas en la carpeta `img/`.
+
+### 1. Vista principal del chat
+![Vista principal del chat](img/1.png)
+
+### 2. Home con galería de personajes
+![Home con galería de personajes](img/2.png)
+
+### 3. Estado del chat con indicador de escritura
+![Estado del chat con indicador de escritura](img/3.png)
+
+### 4. Sección About
+![Sección About](img/4.png)
+
+### 5. Vista responsive en desktop
+![Vista responsive en desktop](img/5-desktop.png)
+
+### 6. Vista responsive en móvil
+![Vista responsive en móvil](img/5-movil.png)
+
+### 7. Vista responsive en tablet
+![Vista responsive en tablet](img/5-tablet.png)
+
+---
+
 ## 🌐 Deploy
 
 ### Despliegue en Vercel
