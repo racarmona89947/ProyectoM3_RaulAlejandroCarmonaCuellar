@@ -1,8 +1,9 @@
 {
+  "outputDirectory": "src",
   "rewrites": [
-    { "source": "/home", "destination": "/src/index.html" },
-    { "source": "/chat", "destination": "/src/index.html" },
-    { "source": "/about", "destination": "/src/index.html" },
-    { "source": "/", "destination": "/src/index.html" }
+    { "source": "/home", "destination": "/index.html" },
+    { "source": "/chat", "destination": "/index.html" },
+    { "source": "/about", "destination": "/index.html" },
+    { "source": "/", "destination": "/index.html" }
   ]
 }
