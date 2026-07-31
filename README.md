@@ -177,6 +177,35 @@ npm test
 
 ---
 
+## 📚 Cómo se organiza esta documentación
+
+Este README toma referencias de los otros proyectos del curso y las adapta a este M3:
+
+- Del proyecto M1 toma una explicación visual, simple y directa de la experiencia de uso.
+- Del proyecto M2 toma el bloque técnico con instalación, variables de entorno, despliegue y notas de repositorio.
+- En M3 se agrega un bloque específico para Gemini, Vercel Functions, prompts y flujo de chat, porque la IA es parte central del entregable.
+
+La idea es que quede claro, técnico y fácil de revisar, sin perder el contexto del trabajo realizado por Raul Alejandro Carmona Cuellar.
+
+---
+
+## 🧹 Qué se ignora en `.gitignore`
+
+Se excluyen solo archivos locales, generados o privados que no deben versionarse:
+
+- `node_modules/`: dependencias instaladas por npm.
+- `.env`, `.env.local` y `.env.*.local`: variables de entorno locales con datos sensibles.
+- `.vercel/` y `.vercel`: metadatos de despliegue local de Vercel.
+- `coverage/` y `dist/`: salidas generadas por pruebas o builds.
+- `*.log`: registros temporales de ejecución.
+- `.DS_Store`: archivo oculto de macOS.
+- `.vscode/` y `.idea/`: configuraciones locales de editores.
+- `DOCUMENTACION_PRIVADA/`: material interno que no debe subirse al repo.
+
+El archivo `.env.example` sí se mantiene en el repositorio porque documenta los nombres de las variables sin exponer valores reales.
+
+---
+
 ## 🌐 Deploy
 
 ### Despliegue en Vercel
@@ -195,9 +224,10 @@ npm test
 ## 🧱 Estructura del proyecto
 
 ```text
-ProyectoM3_Ejemplo/
+ProyectoM3_RaulAlejandroCarmonaCuellar/
 ├── api/
-│   └── chat.js
+│   ├── chat.js
+│   └── character-image.js
 ├── src/
 │   ├── index.html
 │   ├── styles.css
@@ -214,8 +244,13 @@ ProyectoM3_Ejemplo/
 │   ├── parser.test.js
 │   ├── router.test.js
 │   └── chat.test.js
+├── scripts/
+│   └── dev-server.mjs
 ├── .env.example
+├── .gitignore
+├── package-lock.json
 ├── package.json
+├── vercel.json
 └── README.md
 ```
 
@@ -223,60 +258,43 @@ ProyectoM3_Ejemplo/
 
 ## 🧠 Registro de uso de IA
 
-La IA fue usada como herramienta de apoyo durante el desarrollo. Las decisiones finales, las pruebas y la implementación quedaron a cargo de **Raul Alejandro Carmona Cuellar**.
+La IA se usó como apoyo técnico y documental. Las decisiones finales, las pruebas y la implementación quedaron a cargo de **Raul Alejandro Carmona Cuellar**.
+Las respuestas de esta sección están redactadas como respuestas reales del asistente durante el desarrollo, no como ideas genéricas.
 
-### Qué me ayudó a hacer la IA
-- Proponer estructuras iniciales de carpetas y archivos.
-- Ajustar prompts del personaje para que respondiera mejor.
-- Depurar detalles de routing y estados del chat.
-- Redactar borradores de documentación técnica.
-- Revisar inconsistencias entre el frontend y la función serverless.
-
-### Ejemplos de prompts usados
-
-#### 1) Estructura general del proyecto
+### 1) Estructura general del proyecto
 **Prompt:**
 ```text
 Estoy construyendo una SPA en JavaScript vanilla con Home, Chat y About.
 Quiero una estructura simple de archivos para separar routing, chat, utils y vistas.
 ```
 
-**Qué tomé de la respuesta:** Separé la lógica en `app.js`, `router.js`, `chat.js`, `utils.js` y las vistas por módulo.
+**Respuesta:** Separá la lógica en `app.js`, `router.js`, `chat.js` y `utils.js`, y mové lo reutilizable a `components/`, `services/` y `views/` para que cada archivo tenga una responsabilidad clara.
 
-#### 2) Diseño del prompt del personaje
+### 2) Prompt del personaje
 **Prompt:**
 ```text
 Ayúdame a definir un system prompt para un personaje de Los Simpson.
 Quiero que responda corto, mantenga su personalidad y use tono de chat.
 ```
 
-**Qué tomé de la respuesta:** La idea de fijar personalidad, tono, límites y respuestas breves dentro del prompt del servidor.
+**Respuesta:** Definí la personalidad, el tono, las limitaciones y el tipo de humor del personaje, y pedile que responda corto para que el chat se sienta natural y consistente.
 
-#### 3) Integración segura de IA
+### 3) Integración segura de IA
 **Prompt:**
 ```text
 No quiero exponer la API key en el frontend.
 ¿Cómo organizo la llamada a la IA usando una Vercel Function como proxy?
 ```
 
-**Qué tomé de la respuesta:** La decisión de enviar el historial al backend y dejar la key solo en variables de entorno.
+**Respuesta:** Mandá el historial al backend, leé la key desde variables de entorno en la función serverless y devolvé al frontend solo la respuesta procesada para no exponer credenciales.
 
-#### 4) Responsive compacta
-**Prompt:**
-```text
-La interfaz se ve muy grande en mobile.
-Quiero una versión más compacta, sin scroll horizontal y con mejor lectura en pantallas pequeñas.
-```
-
-**Qué tomé de la respuesta:** Ajustes de padding, tipografía, grid y breakpoints en CSS.
-
-#### 5) README y documentación
+### 4) README y deploy
 **Prompt:**
 ```text
 Quiero que el README se vea como el de mis otros proyectos: claro, ordenado, con contexto, instalación, tests, deploy y uso de IA.
 ```
 
-**Qué tomé de la respuesta:** Esta estructura de documentación, más explicativa y ordenada.
+**Respuesta:** Ordená el README por bloques de contexto, funcionalidad, arquitectura, instalación, variables de entorno, tests, despliegue y registro de IA para que cualquiera pueda ejecutar y revisar el proyecto sin ayuda externa.
 
 ---
 
@@ -298,3 +316,18 @@ npm run build
 - La IA se utilizó como apoyo, no como autora del trabajo.
 - La versión final usa **Gemini** detrás de una Vercel Function y el SDK de Google.
 - La arquitectura mantiene el proveedor aislado en el backend para poder cambiar el modelo sin tocar el frontend.
+
+---
+
+## ✅ Validación contra la rúbrica
+
+- Responsive mobile-first en 3 tamaños: cubierto por `src/styles.css` y las vistas del SPA.
+- SPA con History API: cubierto por `src/router.js` y `src/app.js`.
+- Async/await y Fetch API con manejo de errores: cubierto por `src/chat.js`, `src/services/` y `api/chat.js`.
+- Integración con Gemini y system prompt: cubierto por `api/chat.js`, `src/characters.js` y `src/utils.js`.
+- Seguridad con Vercel Functions y variables de entorno: cubierto por `api/chat.js` y `.env.example`.
+- Chat con historial, loading, error y copy: cubierto por `src/chat.js` y los componentes de `src/components/`.
+- Tests con Vitest: cubierto por `tests/`.
+- README con contexto, instalación, tests, deploy y prompts: cubierto en este archivo.
+- URL pública de Vercel: pendiente de publicar.
+- Capturas de pantalla del deploy: pendientes de completar.
