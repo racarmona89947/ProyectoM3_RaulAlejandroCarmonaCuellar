@@ -370,8 +370,8 @@ npm run build
 
 ## 📌 Notas finales
 
-- El proyecto fue desarrollado por **Raul Alejandro Carmona Cuellar**.
-- La IA se utilizó como apoyo, no como autora del trabajo.
+- El proyecto fue pensado, desarrollado y entregado por **Raul Alejandro Carmona Cuellar**.
+- La IA se utilizó únicamente como apoyo técnico y documental, con correcciones puntuales en la conectividad con Vercel y otras ayudas de desarrollo.
 - La versión final usa **Gemini** detrás de una Vercel Function y el SDK de Google.
 - La arquitectura mantiene el proveedor aislado en el backend para poder cambiar el modelo sin tocar el frontend.
 
@@ -397,4 +397,4 @@ Incluye:
 
 ## 📝 Cierre personal
 
-Este trabajo fue realizado por **Raul Alejandro Carmona Cuellar** como entrega del proyecto M3, con la IA utilizada únicamente como apoyo técnico y documental.
+Este trabajo fue realizado por **Raul Alejandro Carmona Cuellar** como entrega del proyecto M3. La IA acompañó el proceso como apoyo técnico y documental, con ajustes puntuales sobre Vercel y otras tareas de desarrollo, pero no como autora ni responsable del proyecto.
