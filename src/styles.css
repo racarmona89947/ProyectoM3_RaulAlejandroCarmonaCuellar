@@ -736,6 +736,21 @@ body[data-route='chat'] .chat-hero .badge--idle {
   word-break: break-word;
 }
 
+body[data-route='chat'] .message,
+body[data-route='chat'] .message__meta,
+body[data-route='chat'] .message__content,
+body[data-route='chat'] .message__meta strong,
+body[data-route='chat'] .message__meta time,
+body[data-route='chat'] .chat-form textarea,
+body[data-route='chat'] .chat-form textarea::placeholder {
+  color: var(--text);
+}
+
+:root[data-theme='dark'] body[data-route='chat'] .message--user {
+  background: linear-gradient(135deg, #5b4310 0%, #7a5a14 100%);
+  color: var(--text);
+}
+
 .message__copy {
   justify-self: end;
   padding: 0.4rem 0.65rem;
