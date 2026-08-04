@@ -5,8 +5,11 @@
   "outputDirectory": "src",
   "rewrites": [
     { "source": "/home", "destination": "/index.html" },
+    { "source": "/home/", "destination": "/index.html" },
     { "source": "/chat", "destination": "/index.html" },
+    { "source": "/chat/", "destination": "/index.html" },
     { "source": "/about", "destination": "/index.html" },
+    { "source": "/about/", "destination": "/index.html" },
     { "source": "/", "destination": "/index.html" }
   ]
 }
