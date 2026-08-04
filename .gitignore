@@ -1,5 +1,9 @@
+#Gitignore file for ProyectoM3_RaulAlejandroCarmonaCuellar
+.gitignore
+
 # Dependencies
 node_modules/
+package-lock.json
 
 # Environment files
 .env
