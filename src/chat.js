@@ -1,5 +1,5 @@
 import { sendChatToApi } from './services/geminiApi.js';
-import { createMessage, appendMessage, loadJson, saveJson, removeStoredValue, trimHistory, getHistoryKey } from './utils.js';
+import { createMessage, appendMessage, loadJson, saveJson, removeStoredValue, trimHistory, getHistoryKey, renderSimpsonsErrorState } from './utils.js';
 import { renderMessageBubble } from './components/messageBubble.js';
 import { renderTypingIndicator } from './components/typingIndicator.js';
 
@@ -46,7 +46,7 @@ export function createChatSession() {
 
   function setStatusError(message) {
     if (elements.status) {
-      elements.status.innerHTML = message ? `<div class="state-box state-box--error"><strong>No pudimos enviar el mensaje.</strong><p>${message}</p></div>` : '';
+      elements.status.innerHTML = message ? renderSimpsonsErrorState({ type: 'chat-send', detail: message }) : '';
     }
   }
 

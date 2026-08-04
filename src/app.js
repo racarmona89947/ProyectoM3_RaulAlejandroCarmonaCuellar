@@ -5,7 +5,7 @@ import { renderAbout } from './views/about.js';
 import { createChatSession } from './chat.js';
 import { fetchCharacterById, fetchCharacters } from './services/simpsonsApi.js';
 import { getCharacterMeta } from './characters.js';
-import { getTheme, loadJson, saveJson, setTheme, toggleTheme, STORAGE_KEYS } from './utils.js';
+import { formatSimpsonsErrorText, getTheme, loadJson, renderSimpsonsErrorState, saveJson, setTheme, toggleTheme, STORAGE_KEYS } from './utils.js';
 
 const appRoot = document.querySelector('#app');
 const chatSession = createChatSession();
@@ -37,7 +37,7 @@ async function ensureCharactersLoaded() {
   try {
     state.characters = await fetchCharacters();
   } catch (error) {
-    state.charactersError = error instanceof Error ? error.message : 'No se pudieron cargar los personajes.';
+    state.charactersError = error instanceof Error ? error.message : formatSimpsonsErrorText('characters-load');
   } finally {
     state.charactersLoading = false;
     renderApp();
@@ -107,12 +107,15 @@ function renderApp(routeName = resolveRoute(window.location.pathname)) {
   }
 
   if (routeName === 'not-found') {
+    const requestedPath = window.location.pathname || '/';
     pageContent = `
-      <section class="panel about">
+      <section class="panel not-found-scene">
         <p class="eyebrow">404</p>
-        <h1>Página no encontrada</h1>
-        <p>La ruta solicitada no existe dentro de la SPA.</p>
-        <a class="button button--primary" href="/home" data-link>Volver al inicio</a>
+        ${renderSimpsonsErrorState({
+          type: 'not-found',
+          detail: `Ruta solicitada: ${requestedPath}`,
+          actionMarkup: '<a class="button button--primary" href="/home" data-link>Volver al inicio</a>'
+        })}
       </section>
     `;
   }

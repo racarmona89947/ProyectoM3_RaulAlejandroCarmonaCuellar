@@ -120,10 +120,89 @@ export function normalizeGeminiResponse(rawResponse) {
     .replace(/\s+/g, ' ');
 
   if (!text) {
-    throw new Error('La respuesta de la IA no incluyó texto utilizable.');
+    throw new Error(formatSimpsonsErrorText('ai-empty'));
   }
 
   return text;
+}
+
+export function getSimpsonsErrorCopy(type = 'generic') {
+  const copyByType = {
+    'not-found': {
+      title: '404 - Ruta perdida en Springfield',
+      message: 'Bart movio el letrero de esta calle. Esta ruta no existe en la ciudad.'
+    },
+    'characters-load': {
+      title: 'No llegaron los vecinos de Springfield',
+      message: 'El bus escolar se retraso y no pudimos cargar personajes por ahora.'
+    },
+    'chat-send': {
+      title: 'D\'oh. El mensaje no despego',
+      message: 'La taberna de Moe tiene mala senal y el chat no pudo enviar tu mensaje.'
+    },
+    'api-response': {
+      title: 'Krusty corto la transmision',
+      message: 'La respuesta del servidor no llego como esperabamos.'
+    },
+    'api-network': {
+      title: 'La red de Springfield esta caida',
+      message: 'No hubo conexion. Revisa internet e intentalo nuevamente.'
+    },
+    'ai-empty': {
+      title: 'La IA se quedo sin guion',
+      message: 'Gemini respondio sin texto utilizable para continuar la escena.'
+    },
+    'api-method': {
+      title: 'Metodo no permitido por el jefe Wiggum',
+      message: 'Este endpoint solo acepta solicitudes POST.'
+    },
+    'api-config': {
+      title: 'La planta nuclear quedo sin energia',
+      message: 'Falta configurar GEMINI_API_KEY en el servidor.'
+    },
+    'api-request': {
+      title: 'Peticion incompleta en la oficina de correos',
+      message: 'Debes enviar characterId y messages para iniciar el chat.'
+    },
+    'api-internal': {
+      title: 'Exploto algo en el sotano del Sr. Burns',
+      message: 'Ocurrio un error interno del servidor. Intenta de nuevo en unos segundos.'
+    },
+    generic: {
+      title: 'D\'oh. Algo salio mal',
+      message: 'Se produjo un error inesperado en Springfield.'
+    }
+  };
+
+  return copyByType[type] ?? copyByType.generic;
+}
+
+export function formatSimpsonsErrorText(type = 'generic', detail = '') {
+  const copy = getSimpsonsErrorCopy(type);
+  const normalizedDetail = String(detail || '').trim();
+
+  if (!normalizedDetail) {
+    return `${copy.title}. ${copy.message}`;
+  }
+
+  return `${copy.title}. ${copy.message} Detalle tecnico: ${normalizedDetail}`;
+}
+
+export function renderSimpsonsErrorState({ type = 'generic', detail = '', actionMarkup = '' } = {}) {
+  const copy = getSimpsonsErrorCopy(type);
+  const normalizedDetail = String(detail || '').trim();
+
+  return `
+    <div class="state-box state-box--error state-box--simpsons-error" role="alert" aria-live="polite">
+      <div class="state-box__header">
+        <span class="state-box__chip">Springfield Alert</span>
+        <strong>${escapeHtml(copy.title)}</strong>
+      </div>
+      <p class="state-box__message">${escapeHtml(copy.message)}</p>
+      ${normalizedDetail ? `<p class="state-box__detail">Pista tecnica: ${escapeHtml(normalizedDetail)}</p>` : ''}
+      ${actionMarkup}
+    </div>
+  `;
 }
 
 export function transformCharacter(rawCharacter) {

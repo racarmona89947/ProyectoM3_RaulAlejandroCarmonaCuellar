@@ -1,6 +1,6 @@
 import { GoogleGenAI } from '@google/genai';
 import { getCharacterPrompt, getCharacterMeta } from '../src/characters.js';
-import { normalizeGeminiResponse } from '../src/utils.js';
+import { formatSimpsonsErrorText, normalizeGeminiResponse } from '../src/utils.js';
 
 const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-3.1-flash-lite';
 const GEMINI_MAX_TOKENS = Number(process.env.GEMINI_MAX_TOKENS ?? 700);
@@ -103,14 +103,14 @@ async function continueIfTruncated(client, character, messages, data) {
 
 export default async function handler(request, response) {
   if (request.method !== 'POST') {
-    response.status(405).json({ error: 'Method Not Allowed' });
+    response.status(405).json({ error: formatSimpsonsErrorText('api-method') });
     return;
   }
 
   const apiKey = process.env.GEMINI_API_KEY;
 
   if (!apiKey) {
-    response.status(500).json({ error: 'Falta la variable de entorno GEMINI_API_KEY.' });
+    response.status(500).json({ error: formatSimpsonsErrorText('api-config') });
     return;
   }
 
@@ -121,7 +121,7 @@ export default async function handler(request, response) {
     const character = getCharacterMeta(characterId);
 
     if (!characterId || !messages.length) {
-      response.status(400).json({ error: 'characterId y messages son requeridos.' });
+      response.status(400).json({ error: formatSimpsonsErrorText('api-request') });
       return;
     }
 
@@ -132,6 +132,7 @@ export default async function handler(request, response) {
     const answer = normalizeGeminiResponse(completeData);
     response.status(200).json({ answer });
   } catch (error) {
-    response.status(500).json({ error: error instanceof Error ? error.message : 'Error interno del servidor.' });
+    const detail = error instanceof Error ? error.message : '';
+    response.status(500).json({ error: formatSimpsonsErrorText('api-internal', detail) });
   }
 }

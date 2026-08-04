@@ -1,4 +1,5 @@
 import { renderCharacterCard } from '../components/characterCard.js';
+import { renderSimpsonsErrorState } from '../utils.js';
 
 function renderSkeletonCard() {
   return `
@@ -23,7 +24,13 @@ export function renderHome({ characters = [], loading = false, error = null, sel
         <a class="button button--ghost" href="/about" data-link>Conocer el proyecto</a>
       </div>
 
-      ${error ? `<div class="state-box state-box--error"><strong>Error cargando personajes.</strong><p>${error}</p><button type="button" data-retry-characters>Reintentar</button></div>` : ''}
+      ${error
+    ? renderSimpsonsErrorState({
+      type: 'characters-load',
+      detail: error,
+      actionMarkup: '<button class="button button--ghost" type="button" data-retry-characters>Reintentar</button>'
+    })
+    : ''}
 
       <div class="character-grid ${loading ? 'character-grid--loading' : ''}">
         ${loading && !characters.length ? Array.from({ length: 7 }, renderSkeletonCard).join('') : characters.map((character) => renderCharacterCard(character, Number(character.id) === Number(selectedCharacterId))).join('')}

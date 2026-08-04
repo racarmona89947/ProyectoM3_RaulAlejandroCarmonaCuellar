@@ -1,3 +1,5 @@
+import { renderSimpsonsErrorState } from '../utils.js';
+
 export function renderChatView({ character, messages = [], loading = false, error = null, hasSavedHistory = false }) {
   return `
     <section class="chat-layout panel">
@@ -15,7 +17,7 @@ export function renderChatView({ character, messages = [], loading = false, erro
       </header>
 
       <div class="chat-status" data-chat-status>
-        ${error ? `<div class="state-box state-box--error"><strong>No pudimos enviar el mensaje.</strong><p>${error}</p></div>` : ''}
+        ${error ? renderSimpsonsErrorState({ type: 'chat-send', detail: error }) : ''}
       </div>
 
       <div class="chat-panel">
