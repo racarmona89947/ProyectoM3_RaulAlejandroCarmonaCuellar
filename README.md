@@ -9,6 +9,8 @@ Autor: **Raul Alejandro Carmona Cuellar**
 
 **Repositorio:** [https://github.com/racarmona89947/ProyectoM3_RaulAlejandroCarmonaCuellar](https://github.com/racarmona89947/ProyectoM3_RaulAlejandroCarmonaCuellar)
 
+**Api usada:** [https://thesimpsonsapi.com/](https://thesimpsonsapi.com/)
+
 ---
 
 ## ✨ ¿Qué hace?
